@@ -41,10 +41,15 @@ public class LoginServlet extends HttpServlet {
 			String authorization = loginService.authorization(userName);
 			if("A".equals(authorization))
 			{
-				if(userStatus==0 || userStatus==1)
+				if(userStatus==0)
 				{
 				RequestDispatcher rd = request.getRequestDispatcher("admin.html");
 				rd.forward(request, response);}
+				if(userStatus==1)
+				{
+					RequestDispatcher rd = request.getRequestDispatcher("ali.html");
+					rd.forward(request, response);}
+				
 				else
 				{
 					RequestDispatcher rd = request.getRequestDispatcher("deactivated_user.html");
@@ -54,11 +59,16 @@ public class LoginServlet extends HttpServlet {
 			
 		if("U".equals(authorization))
 		{
-			if(userStatus==0 || userStatus==1)
+			if(userStatus==0)
 			{
 			RequestDispatcher rd = request.getRequestDispatcher("user.html");
 			rd.forward(request, response);
 			}
+			if(userStatus==1)
+			{
+				RequestDispatcher rd = request.getRequestDispatcher("ali.html");
+				rd.forward(request, response);}
+			
 			else
 			{
 				RequestDispatcher rd = request.getRequestDispatcher("deactivated_user.html");
@@ -67,9 +77,13 @@ public class LoginServlet extends HttpServlet {
 
 		}if("V".equals(authorization))
 		{
-			if(userStatus==0 || userStatus==1)
+			if(userStatus==0)
 			{
 			RequestDispatcher rd = request.getRequestDispatcher("vendor.html");
+			rd.forward(request, response);}
+			if(userStatus==1)
+			{
+			RequestDispatcher rd = request.getRequestDispatcher("ali.html");
 			rd.forward(request, response);}
 			else
 			{
