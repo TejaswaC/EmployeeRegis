@@ -23,6 +23,10 @@ public class employeeServiceImpl implements employeeService{
 	public String insert(String id, String fn, String ln, int sal) {
 		return e_dao.insert(id,fn,ln,sal);
 	}
+	public String update(String tupple, String change) {
+		// TODO Auto-generated method stub
+		return e_dao.update(tupple, change);
+	}
 	
 	
 }

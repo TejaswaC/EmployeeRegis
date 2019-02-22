@@ -53,8 +53,35 @@ public class Employee_RegistrationDAOImpl implements Employee_RegistrationDAO {
 		}
 		catch(SQLException e)
 		{e.printStackTrace();}
-		return null;}	
+		return null;}
+	
+	public String update(String empid, String change) {
+		String query ="UPDATE Employee SET salary=? WHERE empid=?";	
+		Connection connection=null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet =null;
+		connection = DBUtils.getConnection();
+		try
+		{
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1,change);
+			preparedStatement.setString(2,empid);
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next())
+			{
+				return "Table Altered";
+			}
+		}
+		catch(SQLException e)
+		{e.printStackTrace();}
+		
+		return null;}
 	
 	
+	}	
 	
-}
+	
+
+
