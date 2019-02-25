@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cts.employeemanagementsystem.service.LoginService;
 import com.cts.employeemanagementsystem.service.LoginServiceImpl;
@@ -39,16 +40,20 @@ public class LoginServlet extends HttpServlet {
 			{
 				if(userStatus==0)
 				{
-				RequestDispatcher rd = request.getRequestDispatcher("admin.html");
+					HttpSession session = request.getSession();
+					session.setAttribute("userName",userName);
+
+				RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
 				rd.forward(request, response);}
 				if(userStatus==1)
 				{
-					RequestDispatcher rd = request.getRequestDispatcher("ali.html");
-					rd.forward(request, response);}
+					HttpSession session = request.getSession();
+					session.setAttribute("userName",userName);}
+					
 				
 				else
 				{
-					RequestDispatcher rd = request.getRequestDispatcher("deactivated_user.html");
+					RequestDispatcher rd = request.getRequestDispatcher("deactivated_user.jsp");
 					rd.forward(request, response);}
 				}
 
@@ -57,33 +62,40 @@ public class LoginServlet extends HttpServlet {
 		{
 			if(userStatus==0)
 			{
-			RequestDispatcher rd = request.getRequestDispatcher("user.html");
+			HttpSession session = request.getSession();
+			RequestDispatcher rd = request.getRequestDispatcher("user.jsp");
 			rd.forward(request, response);
 			}
 			if(userStatus==1)
 			{
-				RequestDispatcher rd = request.getRequestDispatcher("ali.html");
+				RequestDispatcher rd = request.getRequestDispatcher("ali.jsp");
 				rd.forward(request, response);}
 			
 			else
 			{
-				RequestDispatcher rd = request.getRequestDispatcher("deactivated_user.html");
-				rd.forward(request, response);}
+				HttpSession session = request.getSession();
+				session.setAttribute(userName,"userName");
+				RequestDispatcher rd = request.getRequestDispatcher("deactivated_user.jsp");
+				rd.forward(request, response);
+				session.setAttribute(userName,"userName");
+}
 			
 
 		}if("V".equals(authorization))
 		{
 			if(userStatus==0)
 			{
-			RequestDispatcher rd = request.getRequestDispatcher("vendor.html");
-			rd.forward(request, response);}
+			RequestDispatcher rd = request.getRequestDispatcher("vendor.jsp");
+			rd.forward(request, response);
+			HttpSession session = request.getSession();
+			session.setAttribute("userName",userName);}
 			if(userStatus==1)
 			{
-			RequestDispatcher rd = request.getRequestDispatcher("ali.html");
+			RequestDispatcher rd = request.getRequestDispatcher("ali.jsp");
 			rd.forward(request, response);}
 			else
 			{
-				RequestDispatcher rd = request.getRequestDispatcher("deactivated_user.html");
+				RequestDispatcher rd = request.getRequestDispatcher("deactivated_user.jsp");
 				rd.forward(request, response);}
 			}
 
@@ -93,7 +105,7 @@ public class LoginServlet extends HttpServlet {
 		else
 		{
 			System.out.println("Wrong Password ");
-RequestDispatcher rd = request.getRequestDispatcher("login.html");
+RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 
 			
 			rd.forward(request, response);
@@ -104,11 +116,11 @@ RequestDispatcher rd = request.getRequestDispatcher("login.html");
 		
 			r
 		}/*
-			RequestDispatcher rd = request.getRequestDispatcher("admin.html");
+			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
 
 			
 			rd.include(request, response);
-			//	response.sendRedirect("admin.html");	}
+			//	response.sendRedirect("admin.jsp");	}
 		//doGet(request, response);*/
 		
 		
