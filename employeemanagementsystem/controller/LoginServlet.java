@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String userName = request.getParameter("userId");
 		String password = request.getParameter("password");
-		System.out.println(userName+" "+password);
+		System.out.println(userName +" "+ password);
 		LoginService loginService = LoginServiceImpl.getInstance();
 		if(loginService.authenticate(userName, password))
 		{

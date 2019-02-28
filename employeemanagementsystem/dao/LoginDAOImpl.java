@@ -65,7 +65,8 @@ public class LoginDAOImpl implements LoginDAO {
 	{
 		e.printStackTrace();
 	}
-	return null;}
+	return null;
+	}
 
 
 	public boolean authenticate(String userName, String password) {
